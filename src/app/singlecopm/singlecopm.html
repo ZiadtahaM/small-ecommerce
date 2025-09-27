@@ -1,0 +1,104 @@
+<div class="social-commerce-container">
+  <div class="product-main-content">
+    <div class="product-gallery">
+      <img class="main-image" [src]="singlepost.images[0]" alt="{{ singlepost.title }}">
+      
+      <div class="thumbnail-strip">
+        @for (img of singlepost.images | slice:1:5; track img) {
+          <img class="thumbnail" [src]="img" alt="Product thumbnail">
+        }
+      </div>
+    </div>
+
+    <div class="product-details">
+      <div class="product-header">
+        <h1 class="product-title">{{ singlepost.title }}</h1>
+        <span class="product-category">{{ singlepost.category }}</span>
+      </div>
+
+      <div class="social-proof-bar">
+        <div class="star-rating">
+          <span class="stars">{{ singlepost.rating }}</span>
+          <a href="#reviews" class="review-count">{{ singlepost.reviews.length }} reviews</a>
+        </div>
+        <div class="social-stats">
+          <span>·</span>
+          <span>1.2k Likes</span>
+          <span>·</span>
+          <span>187 Shares</span>
+        </div>
+      </div>
+
+      <hr class="soft-divider">
+
+      <div class="price-box">
+        <span class="price-label">Price:</span>
+        <span class="product-price">{{ singlepost.price}}</span>
+        @if (singlepost.discountPercentage) {
+          <span class="discount-badge">{{ singlepost.discountPercentage }}% OFF</span>
+        }
+      </div>
+      <div class="stock-info">
+        <span class="availability-status" >
+          {{ singlepost.availabilityStatus }}
+        </span>
+        <span class="shipping-info">| {{ singlepost.shippingInformation }}</span>
+      </div>
+
+      <div class="action-buttons">
+        <button class="add-to-cart-btn">Add to Cart</button>
+        <button class="buy-now-btn">Buy Now</button>
+      </div>
+      
+      <div class="social-interaction">
+        <button class="interaction-btn"><i class="icon-like"></i> Like</button>
+        <button class="interaction-btn"><i class="icon-comment"></i> Comment</button>
+        <button class="interaction-btn"><i class="icon-share"></i> Share</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-lower-content">
+    <div class="details-and-reviews">
+      <div class="content-card">
+        <h3>About this item</h3>
+        <p>{{ singlepost.description }}</p>
+      </div>
+
+      <div id="reviews" class="content-card">
+        <h3>Community Reviews</h3>
+        @for (review of singlepost.reviews; track review.username) {
+          <div class="review-post">
+            <img class="reviewer-avatar" [src]="review.avatar" alt="{{ review.username }}">
+            <div class="review-content">
+              <div class="review-header">
+                <strong>{{ review.username }}</strong>
+                <span class="review-rating">{{ review.rating }}</span>
+              </div>
+              <p class="review-text">{{ review.comment }}</p>
+              <div class="review-actions">
+                <span>Like</span> · <span>Reply</span> · <span class="review-timestamp">3h ago</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="related-products-sidebar">
+      <div class="content-card">
+       <h1>Related Posts</h1>
+
+@if (allposts) {
+  @let slicedPosts = allposts | slice:0:3;
+  @for (post of slicedPosts; track $index) { 
+    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+      <h2>{{ post.title }}</h2>
+      <p>Price: {{ post.price }}</p>
+    </div>
+  }
+}
+      </div>
+    </div>
+  </div>
+</div>

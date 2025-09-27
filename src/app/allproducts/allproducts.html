@@ -1,0 +1,48 @@
+<div class="product-list-container">
+  <div class="list-header">
+    <h1 class="page-title">Explore Our Products</h1>
+    <div class="search-wrapper">
+      <i class="search-icon"></i>
+      <input 
+        class="search-input"
+        type="text" 
+        placeholder="Search by title..." 
+        [(ngModel)]="userinputtitle">
+    </div>
+  </div>
+
+  <div class="product-grid">
+    @for (post of posts | filterpip:userinputtitle; track post.id) {
+      <div class="product-card">
+        <div class="card-image-container">
+          <img class="product-image" [src]="post.thumbnail" alt="{{ post.title }}">
+          <span class="category-badge">{{ post.category }}</span>
+        </div>
+
+        <div class="card-content">
+          <h2 class="product-title">{{ post.title }}</h2>
+          
+          <div class="product-meta">
+            <div class="star-rating">
+              {{ post.rating }}
+            </div>
+          <span class="product-price">{{ post.price }}</span>
+          </div>
+          
+          <p class="product-description">{{ post.description }}</p>
+        </div>
+
+        <div class="card-footer">
+          <button class="show-button" routerLink="/singlepost/{{ post.id }}">
+            View Details
+          </button>
+        </div>
+      </div>
+    } @empty {
+      <div class="no-results-card">
+        <h2>No Products Found</h2>
+        <p>Try adjusting your search terms to find what you're looking for.</p>
+      </div>
+    }
+  </div>
+</div>
