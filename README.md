@@ -6,7 +6,7 @@ Based on the GitHub repository you provided and the screenshot, here is a comple
 
 # Angular E-Commerce Product Platform
 
-![E-Commerce Product Grid](Screenshot%2025-09-27%222035.png)
+!([Screenshot%2025-09-27%222035.png](https://github.com/ZiadtahaM/small-ecommerce/blob/main/Screenshot%202025-09-27%20222035.png))
 
 This is a modern, single-page e-commerce application built with Angular. It provides a dynamic and responsive user experience for browsing, searching, and viewing product details. The platform is designed for high performance and scalability, featuring real-time search filtering and seamless navigation between a product overview grid and detailed single-product pages.
 
