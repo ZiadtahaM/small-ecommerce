@@ -1,12 +1,8 @@
-Of course. You want a professional README file for your e-commerce project, structured like the bakery example, but tailored to the features and technology of your Angular application.
-
-Based on the GitHub repository you provided and the screenshot, here is a complete, professional README file ready for your project.
-
----
 
 # Angular E-Commerce Product Platform
 
-!([Screenshot%2025-09-27%222035.png](https://github.com/ZiadtahaM/small-ecommerce/blob/main/Screenshot%202025-09-27%20222035.png))
+![E-Commerce Product Grid](https://raw.githubusercontent.com/ZiadtahaM/small-ecommerce/main/Screenshot%202025-09-27%20222035.png )
+
 
 This is a modern, single-page e-commerce application built with Angular. It provides a dynamic and responsive user experience for browsing, searching, and viewing product details. The platform is designed for high performance and scalability, featuring real-time search filtering and seamless navigation between a product overview grid and detailed single-product pages.
 
