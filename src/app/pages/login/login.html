@@ -1,0 +1,90 @@
+<form #loginform="ngForm" (ngSubmit)="handleSubmit(loginform)">
+ <h6>value {{loginform.value | json}}</h6>
+            <h6>valid {{loginform.valid}}</h6>
+            <h6>invalid {{loginform.invalid}}</h6>
+            <h6>dirty {{loginform.dirty}}</h6>
+            <h6>touched {{loginform.touched}}</h6>
+            <h6>Submit {{loginform.submitted}}</h6>
+            
+<input type="text " #username="ngModel" required minlength="3" [(ngModel)]="model.first_name" name="username" placeholder="name">
+ @if(loginform.submitted && username.invalid){
+            <div class="alert alert-danger">
+                @if(username.errors?.['required']){
+                <p>This field is required</p>
+                }
+                @if(username.errors?.['minlength']){
+                <p>min length = 3</p>
+                }
+            </div>
+
+            }
+
+              <input type="text " #phone="ngModel" required minlength="3" [(ngModel)]="model.phone" name="phone" placeholder="phone">
+ @if(loginform.submitted && phone.invalid){
+            <div class="alert alert-danger">
+                @if(phone.errors?.['required']){
+                <p>This field is required</p>
+                }
+                @if(phone.errors?.['minlength']){
+                <p>min length = 3</p>
+                }
+            </div>
+        }
+            <input type="text " #secondname="ngModel" required minlength="3" [(ngModel)]="model.last_name" name="last_name" placeholder="name">
+ @if(loginform.submitted && secondname.invalid){
+            <div class="alert alert-danger">
+                @if(secondname.errors?.['required']){
+                <p>This field is required</p>
+                }
+                @if(secondname.errors?.['minlength']){
+                <p>min length = 3</p>
+                }
+            </div>
+        }
+                <h6>value {{username.value}}</h6>
+                <h6>valid {{username.valid}}</h6>
+                <h6>invalid {{username.invalid}}</h6>
+                <h6>dirty {{username.dirty}}</h6>
+                <h6>touched {{username.touched}}</h6>
+                <h6>errors {{username.errors | json}}</h6>
+<input type="text "  email #email="ngModel" required minlength="3" [(ngModel)]="model.email" name="email" placeholder="email">
+@if(loginform.submitted && email.invalid){
+     <div class="alert alert-danger">
+                @if(email.errors?.['required']){
+                <p>This field is required</p>
+                }
+                @if(email.errors?.['minlength']){
+                <p>min length = 3</p>
+                }
+            </div>
+
+            
+}
+<input type="password " #password="ngModel" required minlength="3" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" [(ngModel)]="model.password" name="password">
+@if(loginform.submitted && password.invalid){
+      @if(password.errors?.['required']){
+                <p>This field is required</p>
+                }
+                 @if(password.errors?.['minlength']){
+                <p>min length = 3</p>
+                }
+                 @if(password.errors?.['pattern']){
+                <p>password" that must contain 8 or more characters that are of at least one number, and one uppercase
+                    and lowercase letter:</p>
+                }
+
+}
+  <input type="text" class="form-control" required
+                [(ngModel)]="model.confirm_password" #confirm_password="ngModel" name="confirm_password" placeholder="password">
+           @if(confirm_password.invalid &&(confirm_password.touched||confirm_password.dirty)||(model.confirm_password&&!passmatch())){
+               @if (confirm_password.errors?.['required']) {
+                <p>this field is required</p>
+
+                }
+                @if(model.confirm_password && !passmatch()){
+                <p>passwords do not match</p>
+                }
+           }
+
+<button class="btn btn-primary">Login</button>
+</form>

@@ -15,6 +15,9 @@ export class Api {
   getsinglepost(id:any):Observable<any>{
     return this.http.get(`https://dummyjson.com/products/${id}`)
   }
+  login(model:any):Observable<any>{
+    return this.http.post('https://full.faedg.com/public/api/client/customer_login',model)
+  }
   }
  
   

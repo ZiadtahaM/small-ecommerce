@@ -33,7 +33,7 @@
         </div>
 
         <div class="card-footer">
-          <button class="show-button" routerLink="/singlepost/{{ post.id }}">
+          <button class="show-button"(click)="   toastr.success('Hello world!', 'Toastr fun!');" routerLink="/singlepost/{{ post.id }}">
             View Details
           </button>
         </div>

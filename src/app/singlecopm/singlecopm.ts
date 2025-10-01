@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Api } from '../api';
+import { Router } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 import { SlicePipe,JsonPipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-singlecopm',
@@ -16,7 +18,7 @@ showmore: boolean = false;
   
   allposts:any[]=[]
   singlepost:any
-constructor(private api:Api,private jjj:ActivatedRoute){
+constructor(private api:Api,private jjj:ActivatedRoute,public toastr: ToastrService){
 
 }
 ngOnInit(){let id =this.jjj.snapshot.paramMap.get('postid')
@@ -38,11 +40,17 @@ ngOnInit(){let id =this.jjj.snapshot.paramMap.get('postid')
 
  
 }
- 
+   navigateurl(){
+    this.router.navigate(['/allproducts'])
+  }
+  
 
-
+  router: Router = new Router;
 toggle(){
   this.showmore=!this.showmore
+
+
+
 }
 
 }
