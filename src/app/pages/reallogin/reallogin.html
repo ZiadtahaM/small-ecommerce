@@ -1,0 +1,156 @@
+<div class="form-container">
+  <form #updatedform="ngForm" (ngSubmit)="udatdata(updatedform)" class="modern-form">
+    <h2 class="form-title">Update Profile</h2>
+    
+    <div class="form-debug" *ngIf="false">
+      <h6>Value: {{updatedform.value | json}}</h6>
+      <h6>Valid: {{updatedform.valid}}</h6>
+      <h6>Invalid: {{updatedform.invalid}}</h6>
+      <h6>Dirty: {{updatedform.dirty}}</h6>
+      <h6>Touched: {{updatedform.touched}}</h6>
+      <h6>Submitted: {{updatedform.submitted}}</h6>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input 
+        type="text" 
+        id="username"
+        #username="ngModel" 
+        required 
+        minlength="3" 
+        [(ngModel)]="model.username" 
+        name="username" 
+        placeholder="Enter your username"
+        [class.input-error]="updatedform.submitted && username.invalid"
+        [class.input-success]="username.valid && username.dirty">
+      
+      @if(updatedform.submitted && username.invalid){
+        <div class="error-message">
+          @if(username.errors?.['required']){
+            <p><span class="error-icon">⚠</span> Username is required</p>
+          }
+          @if(username.errors?.['minlength']){
+            <p><span class="error-icon">⚠</span> Username must be at least 3 characters</p>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input 
+        type="email" 
+        id="email"
+        #email="ngModel" 
+        required 
+        [(ngModel)]="model.email" 
+        name="email" 
+        placeholder="Enter your email"
+        [class.input-error]="updatedform.submitted && email.invalid"
+        [class.input-success]="email.valid && email.dirty">
+      
+      @if(updatedform.submitted && email.invalid){
+        <div class="error-message">
+          @if(email.errors?.['required']){
+            <p><span class="error-icon">⚠</span> Email is required</p>
+          }
+          @if(email.errors?.['email']){
+            <p><span class="error-icon">⚠</span> Please enter a valid email address</p>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input 
+        type="text" 
+        id="phone"
+        #phone="ngModel" 
+        required 
+        minlength="3" 
+        [(ngModel)]="model.phone" 
+        name="phone" 
+        placeholder="Enter your phone number"
+        [class.input-error]="updatedform.submitted && phone.invalid"
+        [class.input-success]="phone.valid && phone.dirty">
+      
+      @if(updatedform.submitted && phone.invalid){
+        <div class="error-message">
+          @if(phone.errors?.['required']){
+            <p><span class="error-icon">⚠</span> Phone number is required</p>
+          }
+          @if(phone.errors?.['minlength']){
+            <p><span class="error-icon">⚠</span> Phone number must be at least 3 characters</p>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input 
+        type="text" 
+        id="lastname"
+        #secondname="ngModel" 
+        required 
+        minlength="3" 
+        [(ngModel)]="model.second" 
+        name="last_name" 
+        placeholder="Enter your last name"
+        [class.input-error]="updatedform.submitted && secondname.invalid"
+        [class.input-success]="secondname.valid && secondname.dirty">
+      
+      @if(updatedform.submitted && secondname.invalid){
+        <div class="error-message">
+          @if(secondname.errors?.['required']){
+            <p><span class="error-icon">⚠</span> Last name is required</p>
+          }
+          @if(secondname.errors?.['minlength']){
+            <p><span class="error-icon">⚠</span> Last name must be at least 3 characters</p>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        id="password"
+        #password="ngModel" 
+        required 
+        minlength="8" 
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+        [(ngModel)]="model.password" 
+        name="password"
+        placeholder="Enter your password"
+        [class.input-error]="updatedform.submitted && password.invalid"
+        [class.input-success]="password.valid && password.dirty">
+      
+      @if(updatedform.submitted && password.invalid){
+        <div class="error-message">
+          @if(password.errors?.['required']){
+            <p><span class="error-icon">⚠</span> Password is required</p>
+          }
+          @if(password.errors?.['minlength']){
+            <p><span class="error-icon">⚠</span> Password must be at least 8 characters</p>
+          }
+          @if(password.errors?.['pattern']){
+            <p><span class="error-icon">⚠</span> Password must contain uppercase, lowercase, and number</p>
+          }
+        </div>
+      }
+      
+      <div class="password-hint">
+        <small>Must contain 8+ characters with uppercase, lowercase, and number</small>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">
+      <span class="btn-text">Update Profile</span>
+      <span class="btn-icon">→</span>
+    </button>
+  </form>
+</div>

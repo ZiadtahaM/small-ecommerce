@@ -1,0 +1,14 @@
+<nav class="navbar">
+  <div class="brand">MyApp</div>
+  
+  <div class="nav-links">
+    @if(api.isLogin) {
+      <a routerLink="/allposts">All Posts</a>
+      <a routerLink="/profile/{{api.userid}}">Edit Profile</a>
+      <span class="welcome">Welcome, {{api.username}}</span>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    }
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

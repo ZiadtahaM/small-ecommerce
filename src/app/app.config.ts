@@ -1,27 +1,28 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection,importProvidersFrom  } from '@angular/core';
-import {  provideRouter,  } from '@angular/router';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, importProvidersFrom } from '@angular/core';
+import { provideRouter } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { routes } from './app.routes';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
+import { interceptorInterceptor } from './interceptor-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-       importProvidersFrom(FormsModule),
+    importProvidersFrom(FormsModule),
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
+ provideHttpClient(withInterceptors([interceptorInterceptor])),
+
     provideClientHydration(),
-
-    // 2. Add the providers here
-    provideAnimations(), // required animations providers
-    provideToastr({ timeOut: 10000,
-  positionClass: 'toast-bottom-right',
-  preventDuplicates: true,}),
-
-
-  ]
+    provideAnimations(),
+    provideToastr({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
+  
+  ],
 };

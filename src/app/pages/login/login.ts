@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, CurrencyPipe, JsonPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { CommonModule, CurrencyPipe, JsonPipe } from '@angular/common';
   styleUrl: './login.css'
 })
 export class Login {
+ 
   model={
      first_name: null,
     last_name: null,
@@ -21,7 +23,7 @@ export class Login {
     password: null,
    confirm_password: null
   }
-constructor(private api:Api,public toastr: ToastrService){
+constructor(private api:Api,public toastr: ToastrService ,private router:Router){
 
 }
 passmatch():boolean{
@@ -31,18 +33,27 @@ handleSubmit(form : NgForm){
     
     if(form.valid){
       console.log(form)
-      this.api.login(this.model).subscribe({
+      this.api.regiter(this.model).subscribe({
         next : (res)=>{
           console.log(res)
-          if(res.status){
-            this.toastr.success('login success')
-          }
+        if(res.status=="true"){
+  localStorage.setItem('token', res.data.token);
+         localStorage.setItem('userid',res.data.id)
+             this.api.userid = res.data.id;
+         this.router.navigateByUrl('/allposts');
+           this.toastr.success('regiter success')
+           this.api.username=res.data.first_name
+           this.api.isLogin = true
+        }
+        },
+        error:(err)=>{
+          this.toastr.error(err.error.message)
         }
       }
       )
 
     }else{
-      this.toastr.error('login failed')
+      this.toastr.error('regiter failed')
     }
 
   }
