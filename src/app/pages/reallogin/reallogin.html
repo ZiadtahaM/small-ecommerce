@@ -23,7 +23,7 @@
         name="username" 
         placeholder="Enter your username"
         [class.input-error]="updatedform.submitted && username.invalid"
-        [class.input-success]="username.valid && username.dirty">
+        [class.input-success]="username.valid && username.dirty"  [ngModelOptions]="{standalone: true}">
       
       @if(updatedform.submitted && username.invalid){
         <div class="error-message">
@@ -153,4 +153,29 @@
       <span class="btn-icon">→</span>
     </button>
   </form>
+  <div >
+ <h3>Select Governorate</h3>
+<form #addadress="ngForm" (ngSubmit)="submit(addadress)"><div *ngFor="let gov of governorates">
+  <button type="button"  (click)="onGovernorateClick(gov.id)">
+    {{ gov.name }}
+  </button>
+</div>
+
+<div *ngIf="cities.length > 0">
+  <h3>Select City</h3>
+  <div *ngFor="let city of cities">
+    <button type="button"  [class.selected]="city.id === selectedCityId" (click)="onCityClick(city.id)">
+      {{ city.name_en }}
+    </button>
+  </div>
+</div>
+
+<input type="text" [(ngModel)]="model2.street_address" name="street" placeholder="Street Address" required>
+<input type="text" [(ngModel)]="model2.suburb" name="suburb" placeholder="Suburb">
+<input type="text" [(ngModel)]="model2.phone" name="phone2" placeholder="Phone" required>
+
+
+<button>sub</button>
+
+ </form>
 </div>

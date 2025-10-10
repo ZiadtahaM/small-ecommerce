@@ -28,8 +28,18 @@ export class Api {
   updateprofile(userid: any, updatedData: any): Observable<any> {
   return this.http.put(`https://full.faedg.com/public/api/client/profile/${userid}`, updatedData);
 }
+getgov():Observable<any>{
+  return this.http.get('https://full.faedg.com/public/api/governorates/65')
 }
-
+list():Observable<any>{
+  return this.http.get('https://full.faedg.com/public/api/client/customer_address_book')
+}
+getcity(id:any):Observable<any>{
+  return this.http.get(`https://full.faedg.com/public/api/cities/${id}`)
+}
+addadress(body:any):Observable<any>{
+  return this.http.post('https://full.faedg.com/public/api/client/customer_address_book',body)
+}}
 
   
 
