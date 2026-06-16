@@ -32,8 +32,6 @@ ShopSnap leverages modern Angular features for a maintainable and efficient code
 2. Install dependencies: `npm install`.
 3. Launch: `npm start`.
 
-Live Demo: https://ZiadtahaM.github.io/small-ecommerce
-
 ---
 
 Lightweight, high-performance retail engines for the modern web.
